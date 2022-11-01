@@ -30,23 +30,12 @@ int main()
     char GUESSESFILE[81]= "guessesTiny.txt";
     char ANSWERSFILE[81]= "answersTiny.txt";
     //predefined constants(end)
-
+    
     printf("Default file names are %s and %s\n\n", ANSWERSFILE,GUESSESFILE);
-    int option=0;
-    menu:
-
-    option=mainMenu();
-
-    if(option==3)
-    {
-        printf("Enter new answers and guesses filenames: ");
-        scanf("%s %s", ANSWERSFILE, GUESSESFILE);
-        printf("\n");
-        goto menu;
-    }
-
+    int option=mainMenu();
     int guesses=getWordsCount(GUESSESFILE);
     int answers=getWordsCount(ANSWERSFILE);
+
     printf("%s has %d words\n",ANSWERSFILE,answers);
     printf("%s has %d words\n\n",GUESSESFILE,guesses);
 
@@ -67,26 +56,23 @@ int main()
     {
         printf("Words and scores for top first words:\n");
         calculateScore(guesses,answers,input,output);
-        sort(answers+guesses,input);
 
-        int max=input[0].score;
-        for(int i=0; i<guesses+answers; i++)
-        {
-            if(strcmp(ANSWERSFILE,"answersLarge.txt")==0)
-            {
-                printf("%s %d\n","soare",7127);
-                break;
-            }
-            else if(input[i].score==max)
-            {
-                printf("%s %d\n",input[i].word,input[i].score);
-            }
-        }
-    }
-    else if(option==2)
-    {
-        printf("Words and scores for top first words and second words:\n");
-        calculateScore(guesses,answers,input,output);
+        // for(int i=0; i<guesses+answers; i++)
+        // {
+        //     if(strcmp(input[i].word,"adapt")==0)
+        //     {
+        //         input[i].score=input[i].score-3;
+        //     }                
+        //     if(strcmp(input[i].word,"trait")==0) 
+        //     {
+        //         input[i].score=input[i].score-4;
+        //     }
+        //     if(strcmp(input[i].word,"sours")==0)
+        //     {
+        //         input[i].score=input[i].score-1;
+        //     }
+        // }
+
         sort(answers+guesses,input);
 
         int max=input[0].score;
@@ -94,34 +80,85 @@ int main()
         {
             if(input[i].score==max)
             {
-                hideLetter(guesses,answers,input[i].word,input,output);
-                sort(answers+guesses,output);
-                if(strcmp(ANSWERSFILE,"answersTiny.txt")==0)
-                {
-                    printf("%s %d\n",input[i].word,input[i].score);
-                    int max2=output[0].score;
-                    if(strcmp(input[i].word,"adapt")==0)
-                    {
-                        printf("    %s %d\n","cleft",15);
-                    }
-                    else if(strcmp(input[i].word,"leant")==0)
-                    {
-                        printf("    %s %d\n","abuts",13);
-                    }
-                }
-                else if(strcmp(ANSWERSFILE,"answersLarge.txt")==0)
-                {
-                    printf("%s %d\n","soare",7127);
-                    int max2=output[0].score;
-                    printf("    %s %d\n","clint",5150);
-                }
+                printf("%s %d\n",input[i].word,input[i].score);
             }
         }
+    }
+    else if(option==2)
+    {
+        // printf("Words and scores for top first words and second words:\n");
+        // calculateScore(guesses,answers,input);
+
+        // for(int i=0; i<guesses+answers; i++)
+        // {
+        //     if(strcmp(input[i].word,"adapt")==0)
+        //     {
+        //         input[i].score=input[i].score-3;
+        //     }
+        //     if(strcmp(input[i].word,"trait")==0)
+        //     {
+        //         input[i].score=input[i].score-4;
+        //     }
+        //     if(strcmp(input[i].word,"sours")==0)
+        //     {
+        //         input[i].score=input[i].score-1;
+        //     }
+        // }
+
+        // struct data *temp;
+        // temp = (struct data*) malloc((guesses+answers) * sizeof(struct data));
+
+        // for(int j=0; j<guesses+answers; j++)
+        // {
+        //     strcpy(temp[j].word,input[j].word);
+        //     temp[j].score=input[j].score;
+        // }
+
+        // sort(answers+guesses,input);
+
+        // int max=input[0].score;
+        // for(int i=0; i<guesses+answers; i++)
+        // {
+        //     if(input[i].score==max)
+        //     {
+        //         printf("Iteration--%s\n\n",input[i].word);
+        //         struct data *output;
+        //         output = (struct data*) malloc((guesses+answers) * sizeof(struct data));
+
+        //         for(int j=0; j<guesses+answers; j++)
+        //         {
+        //              strcpy(output[j].word,temp[j].word);
+        //              output[j].score=temp[j].score;
+        //         }
+
+        //         hideLetter(guesses,answers,input[i].word,temp,output);
+        //         calculateScore(guesses,answers,output);
+        //         // //sort(answers+guesses,output);
+        //         for(int k=0;k<guesses+answers;k++)
+        //         {
+        //             printf("%s---%s---%d\n",temp[k].word,output[k].word,output[k].score);
+        //         }
+
+        //         // //int max2=output[0].score;
+        //         // //for(int j=0; j<guesses+answers; j++)
+        //         // //{
+        //         //     //if(output[j].score==max2)
+        //         //     //{
+        //         //       //  printf("%s %d\n",output[j].word,output[j].score);
+        //         //     //}
+        //         // //}
+        //     }
+        //}
+    }
+    else if(option==3)
+    {
+
     }
     printf("Done");
 
     return 0;
 }//end main
+
 
 
 void hideLetter(int guesses,int answers,char word[],struct data *input,struct data *output)
@@ -177,7 +214,6 @@ void hideLetter(int guesses,int answers,char word[],struct data *input,struct da
     }
 }
 
-
 //function to calculate score of each word
 //takes number of words and array of words as input
 //returns nothing
@@ -193,37 +229,50 @@ void calculateScore(int guesses,int answers,struct data *input,struct data *outp
     {
         for(int j=guesses;j<guesses+answers;j++)
         {
-            for(int k=0;k<5;k++)
+            if(input[i].word[0]==input[j].word[0])
             {
-                if(input[i].word[k]==input[j].word[k])
-                {
-                    input[i].score+=3;
-                }
-                else if( input[i].word[k]==input[j].word[0] || input[i].word[k]==input[j].word[1] || input[i].word[k]==input[j].word[2] || input[i].word[k]==input[j].word[3] || input[i].word[k]==input[j].word[4])
-                {
-                    input[i].score+=1;
-                }
+                input[i].score+=3;
             }
-        }
-    }
+            else if(input[i].word[0]==input[j].word[0] || input[i].word[0]==input[j].word[1] || input[i].word[0]==input[j].word[2] || input[i].word[0]==input[j].word[3] || input[i].word[0]==input[j].word[4])
+            {
+                input[i].score+=1;
+            }
 
-    for(int i=0; i<guesses+answers; i++)
-    {
-        if(strcmp(input[i].word,"adapt")==0)
-        {
-           input[i].score=input[i].score-3;
-        }                
-        if(strcmp(input[i].word,"trait")==0) 
-        {
-            input[i].score=input[i].score-4;
-        }
-        if(strcmp(input[i].word,"sours")==0)
-        {
-           input[i].score=input[i].score-1;
-        }
-        if(strcmp(input[i].word,"soare")==0)
-        {
-           input[i].score=7127;
+            if(input[i].word[1]==input[j].word[1])
+            {
+                input[i].score+=3;
+            }
+            else if(input[i].word[1]==input[j].word[0] || input[i].word[1]==input[j].word[1] || input[i].word[1]==input[j].word[2] || input[i].word[1]==input[j].word[3] || input[i].word[1]==input[j].word[4])
+            {
+                input[i].score+=1;
+            }
+
+            if(input[i].word[2]==input[j].word[2])
+            {
+                input[i].score+=3;
+            }
+            else if(input[i].word[2]==input[j].word[0] || input[i].word[2]==input[j].word[1] || input[i].word[2]==input[j].word[2] || input[i].word[2]==input[j].word[3] || input[i].word[2]==input[j].word[4])
+            {
+                input[i].score+=1;
+            }
+
+            if(input[i].word[3]==input[j].word[3])
+            {
+                input[i].score+=3;
+            }
+            else if(input[i].word[3]==input[j].word[0] || input[i].word[3]==input[j].word[1] || input[i].word[3]==input[j].word[2] || input[i].word[3]==input[j].word[3] || input[i].word[3]==input[j].word[4])
+            {
+                input[i].score+=1;
+            }
+
+            if(input[i].word[4]==input[j].word[4])
+            {
+                input[i].score+=3;
+            }
+            else if(input[i].word[4]==input[j].word[0] || input[i].word[4]==input[j].word[1] || input[i].word[4]==input[j].word[2] || input[i].word[4]==input[j].word[3] || input[i].word[4]==input[j].word[4])
+            {
+                input[i].score+=1;
+            }
         }
     }
 }//end calculateScore

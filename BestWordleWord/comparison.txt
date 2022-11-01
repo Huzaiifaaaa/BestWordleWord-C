@@ -1,14 +1,18 @@
-abuts	3+1			1		1+3+3		1
-adapt	3+3+3+3			1/3				1+1
-cleft	3+3			3+3+3				1+1
-leant	1+1+3			1+1+1				1+1
-trait	1+3			1+1				3+3+1
+adept 31
+clear 16
+clapt 33
+darns 12
+sours 8
+tried 14
 
-
-adept	31
-clear	16
-sours	7
-tried	14
-
-
-adept	3+1	3+3+3+3		3+3	1+1+3	1+3=	31
+abuts 24
+adapt 37
+cleft 27
+leant 34
+trait 36
+        abuts       adapt       cleft           leant       trait
+adapt   3/1+1        3+3+3+3+3      3              1/3+3        1/3+3(bigger value)
+leant   1+1         1/3+3         1+1+3           15          3+3   (bigger value)
+cleft   1           3           15              1+1+3       1/3     (bigger value)
+leant   1+1         1/3+3       1+1+3           15           3+3    (bigger value)
+trait   1+1+1 (1/1)   1+1/3+3(1/3)  1+3          1+3+3 (1/3)          15       
